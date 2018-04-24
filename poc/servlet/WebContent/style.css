@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+label {
+	width: 7em;
+	display: block;
+	float: left;
+}
+fieldset div {padding-bottom: 0.5em;}
+fieldset {margin-bottom: 1em;}
+body {
+	font: caption;
+	color: WindowText;
+	background-color: Window;
+	border: 2px solid ActiveBorder;
+}
