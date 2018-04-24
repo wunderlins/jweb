@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(description = "This is a minimal implementation of a Java Servlet.", urlPatterns = { "/Servlet" })
 public class Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private String sirname;
+	private String firstname;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -60,7 +62,10 @@ public class Servlet extends HttpServlet {
 		    br.close();
 		}
 		
-		//template.concat(getServletContext());
+		// replace template variables
+		System.out.println("doGet srname: " + sirname);
+		template = template.replace("$sirname", sirname);
+		template = template.replace("$firstname", firstname);
 		
 		PrintWriter writer = response.getWriter();
 		writer.append(template);
@@ -73,6 +78,18 @@ public class Servlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		sirname = request.getParameter("sirname");
+		firstname = request.getParameter("firstname");
+		
+		if (sirname == null)
+			sirname = "<undefined>";
+		if (firstname == null)
+			firstname = "<undefined>";
+		
+		System.out.println("sirname: " + sirname);
+		System.out.println("firstname: " + firstname);
+		
 		doGet(request, response);
 	}
 

@@ -21,25 +21,22 @@
 </head>
 <body>
 
-
-<fieldset><legend>User Details</legend>
-	<div>
-		<label for="sirname">Sirname</label>
-		<input type="text" id="sirname" value="">
-	</div>
+<form method="post" action="">
+	<fieldset><legend>User Details</legend>
+		<div>
+			<label for="sirname">Sirname</label>
+			<input type="text" id="sirname" name="sirname" value="$sirname">
+		</div>
+		
+		<div>
+			<label for="firstname">Firstname</label>
+			<input type="text" id="firstname" name="firstname" value="$firstname">
+		</div>
+	</fieldset>
 	
-	<div>
-		<label for="firstname">Firstname</label>
-		<input type="text" id="firstname" value="">
-	</div>
-</fieldset>
-
-<fieldset><legend>System</legend>
-	
-</fieldset>
-
-<button>Cancel</button>
-<button>Save</button>
+	<button onclick="window.close();">Cancel</button>
+	<input type="submit" value="Save">
+</form>
 
 </body>
 </html>
