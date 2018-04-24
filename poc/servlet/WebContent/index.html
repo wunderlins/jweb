@@ -3,6 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Overview</title>
+<style type="text/css">
+	body {
+		font: caption;
+		color: WindowText;
+		background-color: Window;
+		border: 2px solid ActiveBorder;
+	}
+</style>
 <script type="application/javascript">
 function wopen(target, url) {
 	var w = window.open(url, target, "width=800, height=600, menubar=0, toolbar=0, location=0, status=1, directories=0, scrollbars=1");
@@ -15,7 +23,9 @@ function wopen(target, url) {
 <h1>Java Web Technologies Demo</h1>
 
 <ul>
-	<li><a href="Servlet" target="servlet" onclick="wopen('servlet', 'Servlet'); return false;">Servlet</a></li>
+	<li><a href="Servlet" target="servlet" onclick="wopen('servlet', 'Servlet'); return false;">Servlet</a>
+		- a simple get/post example using <code>servlet</code> and a HTML template.
+	</li>
 	<li><a href="JSP">JSP</a></li>
 	<li><a href="JSTL">JSTL</a></li>
 </ul>

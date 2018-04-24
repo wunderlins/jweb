@@ -32,11 +32,11 @@ public class Servlet extends HttpServlet {
 
 	/**
 	 * @see Servlet#init(ServletConfig)
+	 */
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		// TODO Auto-generated method stub
 	}
-	 */
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -62,8 +62,13 @@ public class Servlet extends HttpServlet {
 		    br.close();
 		}
 		
+		if (sirname == null)
+			sirname = "";
+		if (firstname == null)
+			firstname = "";
+		
 		// replace template variables
-		System.out.println("doGet srname: " + sirname);
+		//System.out.println("doGet sirname: " + sirname);
 		template = template.replace("$sirname", sirname);
 		template = template.replace("$firstname", firstname);
 		
@@ -79,6 +84,8 @@ public class Servlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		// Simple example storing the values in class variables. This
+		// makes them global to all visitors
 		sirname = request.getParameter("sirname");
 		firstname = request.getParameter("firstname");
 		
