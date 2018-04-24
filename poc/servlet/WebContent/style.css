@@ -11,5 +11,5 @@ body {
 	font: caption;
 	color: WindowText;
 	background-color: Window;
-	border: 2px solid ActiveBorder;
+	/* border: 2px solid ActiveBorder; */
 }

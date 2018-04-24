@@ -4,13 +4,13 @@
 <!DOCTYPE html>
 <html>
 
-<c:if test="${fn eq null}">
+<c:if test="${applicationScope.fn eq null}">
 	<c:set var = "fn" value="" scope="application"/>
 </c:if>
 <c:if test="${not empty param.firstname}">
 	<c:set var = "fn" value="${param.firstname}" scope="application"/>
 </c:if>
-<c:if test="${sn eq null}">
+<c:if test="${applicationScope.sn eq null}">
 	<c:set var = "sn" value="" scope="application"/>
 </c:if>
 <c:if test="${not empty param.sirname}">
@@ -29,12 +29,12 @@
 	<fieldset><legend>User Details</legend>
 		<div>
 			<label for="sirname">Sirname</label>
-			<input type="text" id="sirname" name="sirname" value="${sn}">
+			<input type="text" id="sirname" name="sirname" value="${applicationScope.sn}">
 		</div>
 		
 		<div>
 			<label for="firstname">Firstname</label>
-			<input type="text" id="firstname" name="firstname" value="${fn}">
+			<input type="text" id="firstname" name="firstname" value="${applicationScope.fn}">
 		</div>
 	</fieldset>
 	
