@@ -23,4 +23,13 @@
   <url-pattern>/JSP</url-pattern>
 </servlet-mapping>
 
+<servlet>
+  <servlet-name>jstl</servlet-name>
+  <jsp-file>/jstl.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>jstl</servlet-name>
+  <url-pattern>/JSTL</url-pattern>
+</servlet-mapping>
+
 </web-app>
