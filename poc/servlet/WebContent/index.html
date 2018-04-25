@@ -4,25 +4,20 @@
 <meta charset="UTF-8">
 <title>Overview</title>
 <link rel="stylesheet"  type="text/css" href="style.css">
-<script type="application/javascript">
-function wopen(target, url) {
-	var w = window.open(url, target, "width=800, height=600, menubar=0, toolbar=0, location=0, status=1, directories=0, scrollbars=1");
-	//return w;
-}
-</script>
+<script type="application/javascript" src="servlet.js"></script>
 </head>
 <body>
 
 <h1>Java Web Technologies Demo</h1>
 
 <ul>
-	<li><a href="Servlet" target="servlet" onclick="wopen('servlet', 'Servlet'); return false;">Servlet</a>
+	<li><a href="Servlet" target="servlet" onclick="wopen2(this); return false;">Servlet</a>
 		- a simple get/post example using <code>servlet</code> and a HTML template.
 	</li>
-	<li><a href="JSP" target="servlet" onclick="wopen('jsp', 'JSP'); return false;">JSP</a>
+	<li><a href="JSP" target="servlet" onclick="wopen2(this); return false;">JSP</a>
 		- a simple get/post example using <code>JSP</code>.
 	</li>
-	<li><a href="JSTL">JSTL</a> - JSP Standard Tag Library
+	<li><a href="JSTL" onclick="wopen2(this); return false;">JSTL</a> - JSP Standard Tag Library
 		<ol>
 			<li><a href="http://www.onjava.com/pub/a/onjava/2002/08/14/jstl1.html">Standardizing JSP, Part 1</a> , OnJava, August 2002</li>
 			<li><a href="http://www.onjava.com/pub/a/pub/a/onjava/2002/05/08/jstl.html">JSP Standard Tag Libraries, Part 2</a>, OnJava, May 2002</li>
