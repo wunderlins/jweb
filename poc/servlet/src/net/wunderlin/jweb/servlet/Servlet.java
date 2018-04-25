@@ -46,7 +46,7 @@ public class Servlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		String template = "";
-		String f = getServletContext().getRealPath("form.html");
+		String f = getServletContext().getRealPath("WEB-INF/templates/form.html");
 		BufferedReader br = new BufferedReader(new FileReader(f));
 		try {
 		    StringBuilder sb = new StringBuilder();
