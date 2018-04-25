@@ -11,13 +11,25 @@
 <h1>Java Web Technologies Demo</h1>
 
 <ul>
-	<li><a href="Servlet" target="servlet" onclick="wopen2(this); return false;">Servlet</a>
+	<li><p><a href="Servlet.html" target="servlet" onclick="wopen2(this); return false;">Servlet</a>
 		- a simple get/post example using <code>servlet</code> and a HTML template.
+		</p>
+		<p>
+			This example uses the servlet <code>net.wunderlin.jweb.servlet.Servlet</code>
+			class as well as <code>/META-INF/templates/form.html</code>.
+		</p>
 	</li>
-	<li><a href="JSP" target="servlet" onclick="wopen2(this); return false;">JSP</a>
-		- a simple get/post example using <code>JSP</code>.
+	<li><p><a href="JSP.html" target="servlet" onclick="wopen2(this); return false;">JSP</a>
+		- a simple get/post example using <code>JSP</code>.</p>
+		<p>This example uses a single jsp file called <code>/jsp.jsp</code>.
+		The jsp. is mapped to the url <code>/JSP.html</code> through web.xml for
+		explanatory reasons (which is optional, it could also be called by 
+		it's real file name).</p>
 	</li>
-	<li><a href="JSTL" onclick="wopen2(this); return false;">JSTL</a> - JSP Standard Tag Library
+	<li><p><a href="JSTL.html" onclick="wopen2(this); return false;">JSTL</a> - JSP Standard Tag Library</p>
+		<p>This example is implemented in a single file called <code>/jstl.jsp</code> and is mapped trough web.xml
+		to the URI <code>JSTL.html</code>.</p>
+		<p>JSTL is part <a href="https://docs.oracle.com/javaee/5/tutorial/doc/bnake.html">Java EE 5</a>, more on the topic in the following references:</p>
 		<ol>
 			<li><a href="http://www.onjava.com/pub/a/onjava/2002/08/14/jstl1.html">Standardizing JSP, Part 1</a> , OnJava, August 2002</li>
 			<li><a href="http://www.onjava.com/pub/a/pub/a/onjava/2002/05/08/jstl.html">JSP Standard Tag Libraries, Part 2</a>, OnJava, May 2002</li>

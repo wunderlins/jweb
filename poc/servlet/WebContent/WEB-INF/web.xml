@@ -20,7 +20,7 @@
 </servlet>
 <servlet-mapping>
   <servlet-name>jsp</servlet-name>
-  <url-pattern>/JSP</url-pattern>
+  <url-pattern>/JSP.html</url-pattern>
 </servlet-mapping>
 
 <servlet>
@@ -29,7 +29,7 @@
 </servlet>
 <servlet-mapping>
   <servlet-name>jstl</servlet-name>
-  <url-pattern>/JSTL</url-pattern>
+  <url-pattern>/JSTL.html</url-pattern>
 </servlet-mapping>
 
 </web-app>
