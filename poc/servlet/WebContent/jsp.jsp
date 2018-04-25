@@ -20,7 +20,7 @@
 <head>
 <meta charset="UTF-8">
 <title>User Form</title>
-<link rel="stylesheet"  type="text/css" href="style.css">
+<link rel="stylesheet"  type="text/css" href="assets/style.css">
 </head>
 <body>
 
