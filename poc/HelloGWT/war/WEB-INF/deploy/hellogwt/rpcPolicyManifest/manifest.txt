@@ -1,0 +1,3 @@
+# Module hellogwt
+# RPC service class, partial path of RPC policy file
+net.wunderlin.jweb.client.GreetingService, 1F5FD4081C7EED2D6B745389712A96B1.gwt.rpc
