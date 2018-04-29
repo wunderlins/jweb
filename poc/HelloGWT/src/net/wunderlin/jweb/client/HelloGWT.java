@@ -1,6 +1,8 @@
 package net.wunderlin.jweb.client;
 
 import net.wunderlin.jweb.shared.FieldVerifier;
+import net.wunderlin.jweb.shared.global;
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -12,6 +14,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
@@ -37,24 +40,22 @@ public class HelloGWT implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-		final Button sendButton = new Button("Send");
-		final TextBox nameField = new TextBox();
-		nameField.setText("GWT User");
-		final Label errorLabel = new Label();
-
-		// We can add style names to widgets
-		sendButton.addStyleName("sendButton");
-
-		// Add the nameField and sendButton to the RootPanel
-		// Use RootPanel.get() to get the entire body element
-		RootPanel.get("nameFieldContainer").add(nameField);
-		RootPanel.get("sendButtonContainer").add(sendButton);
-		RootPanel.get("errorLabelContainer").add(errorLabel);
-
-		// Focus the cursor on the name field when the app loads
-		nameField.setFocus(true);
-		nameField.selectAll();
-
+		
+		// add name input fields
+		final TextBox firstname = new TextBox();
+		final TextBox sirname = new TextBox();
+		final Button btnSave = new Button("Save»");
+		final Button btnUpdate = new Button("Update");
+		firstname.setText(global.getFirstname());
+		sirname.setText(global.getSirname());
+		
+		RootPanel.get("inpFirstname").add(firstname);
+		RootPanel.get("inpSirname").add(sirname);
+		HorizontalPanel horizontalPanel = new HorizontalPanel();
+		horizontalPanel.add(btnSave);
+		horizontalPanel.add(btnUpdate);
+		RootPanel.get("buttons").add(horizontalPanel);
+		
 		// Create the popup dialog box
 		final DialogBox dialogBox = new DialogBox();
 		dialogBox.setText("Remote Procedure Call");
@@ -73,51 +74,53 @@ public class HelloGWT implements EntryPoint {
 		dialogVPanel.setHorizontalAlignment(VerticalPanel.ALIGN_RIGHT);
 		dialogVPanel.add(closeButton);
 		dialogBox.setWidget(dialogVPanel);
-
-		// Add a handler to close the DialogBox
+		
+		// dialog close handler
 		closeButton.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+            	dialogBox.hide();
+            }
+        });
+
+		// event handler
+		class saveHandler implements ClickHandler {
 			public void onClick(ClickEvent event) {
-				dialogBox.hide();
-				sendButton.setEnabled(true);
-				sendButton.setFocus(true);
+				sendData();
 			}
-		});
+			
+			private void sendData() {
+				String fn = firstname.getText();
+				String sn = sirname.getText();
+				btnSave.setEnabled(false);
+				
+				greetingService.setValues(fn, sn, new AsyncCallback<Boolean>() {
+					public void onFailure(Throwable caught) {
+						// Show the RPC error message to the user
+						dialogBox.setText("Remote Procedure Call - Failure");
+						serverResponseLabel.addStyleName("serverResponseLabelError");
+						serverResponseLabel.setHTML(caught.getMessage());
+						dialogBox.center();
+						closeButton.setFocus(true);
+						btnSave.setEnabled(true);
+					}
+	
+					public void onSuccess(Boolean truth) {
+						btnSave.setEnabled(true);
+					}
+				});
+			}
+		}
+		// Add a handler to send the name to the server
+		saveHandler sHandler = new saveHandler();
+		btnSave.addClickHandler(sHandler);
 
-		// Create a handler for the sendButton and nameField
-		class MyHandler implements ClickHandler, KeyUpHandler {
-			/**
-			 * Fired when the user clicks on the sendButton.
-			 */
+		class updateHandler implements ClickHandler {
 			public void onClick(ClickEvent event) {
-				sendNameToServer();
+				sendData();
 			}
-
-			/**
-			 * Fired when the user types in the nameField.
-			 */
-			public void onKeyUp(KeyUpEvent event) {
-				if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
-					sendNameToServer();
-				}
-			}
-
-			/**
-			 * Send the name from the nameField to the server and wait for a response.
-			 */
-			private void sendNameToServer() {
-				// First, we validate the input.
-				errorLabel.setText("");
-				String textToServer = nameField.getText();
-				if (!FieldVerifier.isValidName(textToServer)) {
-					errorLabel.setText("Please enter at least four characters");
-					return;
-				}
-
-				// Then, we send the input to the server.
-				sendButton.setEnabled(false);
-				textToServerLabel.setText(textToServer);
-				serverResponseLabel.setText("");
-				greetingService.greetServer(textToServer, new AsyncCallback<String>() {
+			
+			private void sendData() {
+				greetingService.getValues(new AsyncCallback<String[]>() {
 					public void onFailure(Throwable caught) {
 						// Show the RPC error message to the user
 						dialogBox.setText("Remote Procedure Call - Failure");
@@ -125,22 +128,20 @@ public class HelloGWT implements EntryPoint {
 						serverResponseLabel.setHTML(SERVER_ERROR);
 						dialogBox.center();
 						closeButton.setFocus(true);
+						//btnSave.setEnabled(true);
 					}
-
-					public void onSuccess(String result) {
-						dialogBox.setText("Remote Procedure Call");
-						serverResponseLabel.removeStyleName("serverResponseLabelError");
-						serverResponseLabel.setHTML(result);
-						dialogBox.center();
-						closeButton.setFocus(true);
+	
+					public void onSuccess(String[] res) {
+						firstname.setText(res[0]);
+						sirname.setText(res[1]);
 					}
 				});
 			}
 		}
-
+		
 		// Add a handler to send the name to the server
-		MyHandler handler = new MyHandler();
-		sendButton.addClickHandler(handler);
-		nameField.addKeyUpHandler(handler);
+		updateHandler uHandler = new updateHandler();
+		btnUpdate.addClickHandler(uHandler);
+		
 	}
 }
