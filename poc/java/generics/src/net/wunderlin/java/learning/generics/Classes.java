@@ -33,15 +33,25 @@ class MultiTrap<T extends AnimalList<Animal>> {
 	public MultiTrap() {
 		super();
 		
-		@SuppressWarnings("unchecked")
+		//@SuppressWarnings("unchecked")
 		T t = (T) new AnimalList<Animal>();
 		animalList = t;
 	}
+	
+	public MultiTrap(T animalList) {
+		super();
+		this.animalList = animalList;
+	}
+	
 	public void snare(T animals) {
 		animalList.addAll(animals);
 	}
 	
-	public T release() {
+	public T release() throws Exception {
+		if (animalList.size() == 0) {
+			throw new Exception("Nothing to release!");
+		}
+		
 		@SuppressWarnings("unchecked")
 		T tmpList = (T) animalList.clone();
 		animalList.clear();
@@ -51,7 +61,7 @@ class MultiTrap<T extends AnimalList<Animal>> {
 
 public class Classes {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		
 		Trap<Mouse> mouseTrap = new Trap<>();
 		mouseTrap.snare(new Mouse());
@@ -72,6 +82,12 @@ public class Classes {
 			System.out.println(" - " + a.type);
 		
 		System.out.println("There are " + multiTrap.animalList.size() + " left in the trap");
+		
+		try {
+			multiTrap.release();
+		} catch (Exception e) {
+			System.out.println("Error releasing: " + e.getMessage());
+		}
 	}
 
 }
