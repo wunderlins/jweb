@@ -2,6 +2,17 @@ package net.wunderlin.java.learning.generics;
 
 import java.util.*;
 
+/**
+ * Example for double Generics key/value List Entry
+ * <p>
+ * This Constructor takes two generic variable one for 
+ * the key and one for the entry.
+ * 
+ * @author wus
+ *
+ * @param <KeyType>
+ * @param <ValueType>
+ */
 class Entry<KeyType, ValueType> {
 	private final KeyType key;
 	private final ValueType value;
@@ -21,15 +32,28 @@ class Entry<KeyType, ValueType> {
 
 	@Override
 	public String toString() {
-		return "Entry [key=" + key + ", value=" + value + "]";
+		return "Entry [("+ key.getClass().getComponentType() +") key=" + key + ", (" +
+				value.getClass().getComponentType() + ") value=" + value + "]";
 	}
 	
 }
 
+/*
+class IntEntry<KeyType, Integer> extends Entry<KeyType, Integer> {
+	private final KeyType key;
+	private final Integer value;	
+	
+	public IntEntry(KeyType key, Integer value) {
+		super(key, value);
+	}
+}
+*/
+
 public class General {
 
+	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) {
-		ArrayList<Entry> list = new ArrayList<>();
+		List<Entry> list = new ArrayList<Entry>();
 		list.add(new Entry<>("k1", 1));
 		list.add(new Entry<>("k2", "String"));
 		list.add(new Entry<>("k3", 3.1416));
