@@ -1,8 +1,8 @@
 package net.wunderlin.java.learning.generics;
 
-abstract class Animal {public String type = "";}
+abstract class Animal {protected String type = ""; String getType() {return type;}}
 class Mouse extends Animal {public Mouse() {type = "Mouse";}}
-class Bear  extends Animal {public Bear()  {type = "Bear";}}
+class Bear  extends Animal {public Bear()  {type = "Bear"; }}
 
 class Trap<T extends Animal> {
 	T trapped;
