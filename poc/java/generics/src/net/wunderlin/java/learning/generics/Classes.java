@@ -33,7 +33,7 @@ class MultiTrap<T extends AnimalList<Animal>> {
 	public MultiTrap() {
 		super();
 		
-		//@SuppressWarnings("unchecked")
+		@SuppressWarnings("unchecked")
 		T t = (T) new AnimalList<Animal>();
 		animalList = t;
 	}
