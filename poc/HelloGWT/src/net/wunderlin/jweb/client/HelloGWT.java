@@ -116,10 +116,10 @@ public class HelloGWT implements EntryPoint {
 
 		class updateHandler implements ClickHandler {
 			public void onClick(ClickEvent event) {
-				sendData();
+				getData();
 			}
 			
-			private void sendData() {
+			private void getData() {
 				greetingService.getValues(new AsyncCallback<String[]>() {
 					public void onFailure(Throwable caught) {
 						// Show the RPC error message to the user
@@ -142,6 +142,10 @@ public class HelloGWT implements EntryPoint {
 		// Add a handler to send the name to the server
 		updateHandler uHandler = new updateHandler();
 		btnUpdate.addClickHandler(uHandler);
+		
+		// populate widget with data
+		updateHandler uh = new updateHandler();
+		uh.getData();
 		
 	}
 }
