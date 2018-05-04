@@ -32,8 +32,8 @@ class Entry<KeyType, ValueType> {
 
 	@Override
 	public String toString() {
-		return "Entry [("+ key.getClass().getComponentType() +") key=" + key + ", (" +
-				value.getClass().getComponentType() + ") value=" + value + "]";
+		return "Entry [("+ key.getClass().getName() +") key=" + key + ", (" +
+				value.getClass().getName() + ") value=" + value + "]";
 	}
 	
 }
